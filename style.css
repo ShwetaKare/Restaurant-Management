@@ -1,0 +1,484 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color: black; */
+    padding: 5px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 14px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+/* Section styles */
+.section {
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Home section with background image */
+#home {
+    background: url('background.jpg') no-repeat center center/cover;
+    color: white;
+    padding-top: 80px;
+    /* Adjust for navbar height */
+}
+
+/* Centering content in the middle of the screen */
+#home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* Adjust spacing between elements */
+    text-align: center;
+}
+
+#home h1,
+#home p,
+#home .menu-button {
+    margin: 0;
+}
+
+#home h1 {
+    font-size: 36px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+#home p {
+    font-size: 24px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+
+/* Booking Section Styles */
+
+
+#booktable {
+    background-image: url(booktable.jpg);
+    /* Replace with your background image */
+    background-size: cover;
+    /* Ensure the image covers the entire section */
+    background-position: center;
+    color: white;
+    padding-top: 80px;
+    display: none;
+}
+
+/* Use :target to show the book table section when the link is clicked */
+#booktable:target {
+    display: block;
+    background-color: #f4f4f4;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#booktable h2 {
+
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#booktable form {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#booktable form p {
+    text-align: left;
+}
+
+#booktable form input,
+#booktable form select,
+#booktable form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#booktable form button {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#booktable form button:hover {
+    background-color: #555;
+}
+
+
+/* Confirmation message section */
+#confirmation {
+    display: none;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 60px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#confirmation:target {
+    display: block;
+}
+
+#confirmation h2 {
+    font-size: 36px;
+    color: green;
+}
+
+
+
+
+
+.menu-button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    margin-top: 20px;
+    /* Add margin to separate from the text */
+}
+
+.menu-button:hover {
+    background-color: #555;
+    color: white;
+}
+
+#menu {
+    display: none;
+}
+
+/* CSS to show the menu section when the menu button is clicked */
+
+
+#home:target~#menu {
+    display: none;
+}
+
+#menu:target {
+    display: block;
+}
+
+/* Menu section styles */
+#menu {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: left;
+    /* Align content to the left */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.menu-section {
+    margin-bottom: 60px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.menu-section h4 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.menu-item {
+    display: flex;
+    align-items: flex-start;
+    /* Aligns content to the top */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: black;
+    /* Black background for the entire menu item box */
+    border-radius: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.menu-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: black;
+    /* Black background for the text content */
+    padding: 10px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.item-details h3 {
+    font-size: 22px;
+    margin: 0;
+    color: white;
+    background-color: black;
+    /* Ensure the background of the name is black */
+    padding: 5px 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.price {
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.description {
+    font-size: 16px;
+    color: #ccc;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+
+/* Brunch section styles */
+
+#brunch {
+    display: none;
+}
+
+/* CSS to show the brunch section when the menu button is clicked */
+
+#brunch:target {
+    display: block;
+}
+
+#brunch {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    text-align: left;
+    /* Align content to the left */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.brunch-section {
+    margin-bottom: 60px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.brunch-section h4 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.brunch-item {
+    display: flex;
+    align-items: flex-start;
+    /* Aligns content to the top */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: black;
+    /* Black background for the entire menu item box */
+    border-radius: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.brunch-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+
+
+/* About Us Section */
+#about {
+    background-image: url('aboutus.jpeg');
+    /* Replace with your background image */
+    background-size: cover;
+    /* Ensure the image covers the entire section */
+    background-position: center;
+
+    color: white;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* Adjust spacing between elements */
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 36px;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+    /* Space between title and description */
+}
+
+#about p {
+    font-size: 18px;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+/* Contact Us Section */
+#contact {
+    background-image: url('contactus.jpeg');
+    /* Replace with your background image */
+    background-size: cover;
+    /* Ensure the image covers the entire section */
+    background-position: center;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    /* Adjust spacing between elements */
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 36px;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+}
+
+#contact p {
+    font-size: 18px;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+}
+
+/* Table styles in Contact Us section */
+.contact-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    /* Center the table horizontally */
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.contact-table th,
+.contact-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.contact-table th {
+    background-color: #333;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .navbar a {
+        padding: 10px;
+    }
+
+    .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .menu-item img {
+        margin-bottom: 10px;
+    }
+}
+
+/* Additional styles to ensure spacing between the title and description in About Us */
+#about h2 {
+    margin-bottom: 10px;
+    /* Space between title and description */
+}
+
+#about p {
+    margin-top: 0;
+    /* Ensure no additional margin above the paragraph */
+}

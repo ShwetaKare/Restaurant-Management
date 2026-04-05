@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+ <link rel="stylesheet" href="style.css">
+ <style>
+    /* Styling the form container */
+      /* Styling the main container */
+      /* body {
+            font-family: 'Arial', sans-serif;
+          
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            padding: 20px;
+        } */
+
+        /* Styling the order now section */
+        #ordernow {
+            background-image: url(https://media.istockphoto.com/id/1182393436/vector/fast-food-seamless-pattern-with-vector-line-icons-of-hamburger-pizza-hot-dog-beverage.jpg?s=612x612&w=0&k=20&c=jlj-n_CNsrd13tkHwC7MVo0cGUyyc8YP6wJQdCvMUGw=);
+            background-color: rgba(244, 244, 244, 0.9); /* Slightly transparent background */
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px; /* Max width for the box */
+            margin: 0 auto; /* Centering the box */
+            display: none; /* Hidden by default */
+        }
+
+        #ordernow:target {
+            display: block; /* Show when targeted */
+        }
+
+        /* Styling the heading */
+        #ordernow h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Styling form inputs */
+        #orderform input[type="text"],
+        #orderform input[type="email"],
+        #orderform input[type="tel"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0 16px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /* Styling the labels */
+        #orderform p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        /* Styling the submit button */
+        #paybtn {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        #paybtn:hover {
+            background-color: #45a049;
+        }
+
+        /* Adding focus effect to inputs */
+        #orderform input[type="text"]:focus,
+        #orderform input[type="email"]:focus,
+        #orderform input[type="tel"]:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+</style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#booktable">Book Table</a>
+        <a href="#ordernow">Place Order</a>
+        <a href="#menu">Menu</a>
+        <a href="#brunch">Brunch</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+
+
+    </div>
+
+    <!-- Home Section -->
+    <div class="section" id="home">
+        <div id="home-content">
+            <h1>CAFE HOME</h1>
+            <p>Enjoy the finest dining experience with our exquisite dishes made from the freshest ingredients.</p>
+            <a href="#menu" class="menu-button">View Menu</a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+    <!-- Booking Section (Hidden by default)   action="" method="post" name="BookTable" -->
+    <div class="section" id="booktable">
+        <h2>Book a Table</h2>
+        <form id="bookTableForm" action="/submit" method="POST"> 
+            <p>Enter name</p>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <p>Enter mail id</p>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <p>Enter phone number</p>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <p>Enter number of guests</p>
+            <input type="size" name="count" placeholder="Number of guests" required>
+            <p>Enter date</p>
+            <input type="date" name="date" required>
+            <p>Enter time</p>
+            <input type="time" name="time" required>
+            <button type="submit" name="submit">Book Now</button>
+        </form>
+        <button id="generatePDF" style=" display: none; background-color: black;color: white;height: 50px;width: 300px;font-size: 30px;">Print Booking</button>
+    </div>
+
+    <div class="section" id="ordernow">
+        <h2>Your Orders</h2>
+        <form action="payment.html" method="GET">
+            <p>Orders</p>
+            <input type="text" name="orders" placeholder="Your Orders" required>
+            <p>Enter mail id</p>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <p>Enter phone number</p>
+            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+            <button id="paybtn" type="submit" name="paybtn">Pay</button>
+        </form>
+    </div>
+
+   
+
+    <!-- Menu Section -->
+    <div class="section" id="menu">
+        <h1>Explore the Menu</h1>
+
+        <!-- Appetizers -->
+        <div class="menu-section" id="appetizers">
+            <h4>Appetizers</h4>
+            <div class="menu-item">
+                <img src="https://hot-thai-kitchen.com/wp-content/uploads/2021/03/veggie-spring-rolls-blog.jpg"
+                    alt="Spring Rolls">
+                <div class="item-details">
+                    <h3>Spring Rolls</h3>
+                    <span class="price">160/-</span>
+                    <p class="description">Crispy rolls filled with vegetables and served with a tangy dipping sauce.
+                    </p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://www.ambitiouskitchen.com/wp-content/uploads/2023/02/Garlic-Bread-7.jpg"
+                    alt="Garlic Bread">
+                <div class="item-details">
+                    <h3>Garlic Bread</h3>
+                    <span class="price">150/-</span>
+                    <p class="description">Freshly baked bread topped with garlic and herbs.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://sweetsimplevegan.com/wp-content/uploads/2022/03/close_up_Vegan_beer_battered_crispy_onion_rings_sweet_simple_vegan_2-300x300.jpg"
+                    alt="Onion Rings">
+                <div class="item-details">
+                    <h3>Onion Rings</h3>
+                    <span class="price">150/-</span>
+                    <p class="description">Golden fried onion rings served with a special dip.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK_zdP8EPONQJGl1BRP6o_JoQgEqLJY4iAcQ&s"
+                    alt="Chilli Cheese Fries">
+                <div class="item-details">
+                    <h3>Chilli Cheese Fries</h3>
+                    <span class="price">130/-</span>
+                    <p class="description">Crispy fries</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://www.familyfreshmeals.com/wp-content/uploads/2017/12/Roasted-Vegetable-Grilled-Cheese-Family-Fresh-Meals-Recipe-500x500.jpg"
+                    alt="Cheese Sandwich">
+                <div class="item-details">
+                    <h3>Cheese Sandwich</h3>
+                    <span class="price">180/-</span>
+                    <p class="description">Grilled sandwich filled with melted cheese and vegetables.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Course -->
+        <div class="menu-section" id="main-course">
+            <h4>Main Course</h4>
+            <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn-usgSR6HuRBFO9pUrRqrGCBORUj5o7fXSg&s"
+                    alt="Pasta">
+                <div class="item-details">
+                    <h3>Pasta</h3>
+                    <span class="price">300/-</span>
+                    <p class="description">Creamy pasta with a choice of Alfredo or Marinara sauce.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://mediavine-res.cloudinary.com/image/upload/s--IEY1WIur--/ar_16:9,c_fill,f_auto,fl_lossy,q_auto/v1649138026/bsudepnjttakaldpnzs5.jpg"
+                    alt="Noodles">
+                <div class="item-details">
+                    <h3>Noodles</h3>
+                    <span class="price">270/-</span>
+                    <p class="description">Stir-fried noodles with vegetables and your choice of protein.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://www.vegrecipesofindia.com/wp-content/uploads/2016/08/burnt-garlic-fried-rice-recipe.jpg"
+                    alt="Garlic Burnt Rice">
+                <div class="item-details">
+                    <h3>Garlic Burnt Rice</h3>
+                    <span class="price">250/-</span>
+                    <p class="description">Aromatic rice stir-fried with garlic and vegetables.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://www.savingdessert.com/wp-content/uploads/2016/06/Marinated-Burgers-5-800x533.jpg"
+                    alt="Burger">
+                <div class="item-details">
+                    <h3>Burger</h3>
+                    <span class="price">285/-</span>
+                    <p class="description">Juicy burger served with fresh lettuce, tomato, and a special sauce.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://theclevermeal.com/wp-content/uploads/2022/10/tomato-pasta-sauce-with-cream-cheese_10.jpg"
+                    alt="spaggathi">
+                <div class="item-details">
+                    <h3>Spagetti</h3>
+                    <span class="price">310/-</span>
+                    <p class="description">Hot spicy spagetti with rich creamy sauce.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://heygrillhey.com/wp-content/uploads/2024/01/MP-Square.jpg" alt="pizza">
+                <div class="item-details">
+                    <h3>Pizza</h3>
+                    <span class="price">300/-</span>
+                    <p class="description">Classic thin-crust pizza topped with a rich tomato sauce, gooey mozzarella
+                        cheese, and your choice of fresh toppings, baked to perfection in a wood-fired oven.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Desserts -->
+        <div class="menu-section" id="desserts">
+            <h4>Desserts</h4>
+            <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmQtZclUXL7ShRcXUmzSJjDhC_Hj5eN-VjCw&s"
+                    alt="Belgian Waffle">
+                <div class="item-details">
+                    <h3>Belgian Waffle</h3>
+                    <span class="price">180/-</span>
+                    <p class="description">Crispy Belgian waffle served with syrup and a scoop of ice cream.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://insanelygoodrecipes.com/wp-content/uploads/2023/08/tiramisu-800x530.jpg"
+                    alt="Tiramisu">
+                <div class="item-details">
+                    <h3>Tiramisu</h3>
+                    <span class="price">200/-</span>
+                    <p class="description">Classic Italian dessert made with coffee-soaked ladyfingers and mascarpone
+                        cream.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://liliyum.com/cdn/shop/products/Macaroonsbirthdaycake_2400x.jpg?v=1634204797"
+                    alt="Macaron Cake">
+                <div class="item-details">
+                    <h3>Macaron Cake</h3>
+                    <span class="price">300/-</span>
+                    <p class="description">Delicate almond macaron layers filled with buttercream.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7JalsLvGzRcfFd4SgrilRGeEcKM4h9BYaAw&s"
+                    alt="Strawberry Cake">
+                <div class="item-details">
+                    <h3>Strawberry Cake</h3>
+                    <span class="price">270/-</span>
+                    <p class="description">Moist sponge cake layered with fresh strawberries and whipped cream.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0LEawzQZLsPOeZkIOE4GXP0C-Inv7UUG3ag&s"
+                    alt="Ice Cream">
+                <div class="item-details">
+                    <h3>Ice Cream</h3>
+                    <span class="price">190/-</span>
+                    <p class="description">A scoop of our chocolate ice cream.</p>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://www.recipetineats.com/uploads/2023/07/Hot-chocolate-fudge-cake_7-2.jpg"
+                    alt="Hot Chocolate with Brownie">
+                <div class="item-details">
+                    <h3>Hot Chocolate with Brownie</h3>
+                    <span class="price">225/-</span>
+                    <p class="description">Rich hot chocolate served with a warm, fudgy brownie.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+
+        <!-- Brunch Section -->
+      
+            <div class="brunch-section" id="brunch">
+                <h4>Brunch</h4>
+                <p>Special items from 10am to 2pm</p>
+                <div class="brunch-item">
+                    <img src="https://www.onceuponachef.com/images/2009/08/pancakes-01.jpg" alt="Pancakes">
+                    <div class="item-details">
+                        <h3>Pancakes</h3>
+                        <span class="price">220/-</span>
+                        <p class="description">Fluffy pancakes served with butter and syrup.</p>
+                    </div>
+                </div>
+                <div class="brunch-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3YZRBfVqLTFR841apdVL3fg6YX9IiQjTjZA&s"
+                        alt="Omelette">
+                    <div class="item-details">
+                        <h3>Omelette</h3>
+                        <span class="price">180/-</span>
+                        <p class="description">Three-egg omelette with your choice of fillings.</p>
+                    </div>
+                </div>
+                <div class="brunch-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8FjwxSjKCnQbKfLufw7G488TcOqCe6lDtbg&s"
+                        alt="Waffles">
+                    <div class="item-details">
+                        <h3>Waffles</h3>
+                        <span class="price">240/-</span>
+                        <p class="description">Crispy waffles topped with fresh fruit and whipped cream.</p>
+                    </div>
+                </div>
+                <div class="brunch-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZP8YsgXM9kbyHsUcz6UWLUlBVvFOYvSOnyA&s"
+                        alt="Smoothie Bowl">
+                    <div class="item-details">
+                        <h3>Smoothie Bowl</h3>
+                        <span class="price">200/-</span>
+                        <p class="description">A refreshing blend of fruits, granola, and honey.</p>
+                    </div>
+                </div>
+                <div class="brunch-item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGz5DQC3JUWiRKoevmc7EvKLaFhzFPOXnUZw&s"
+                        alt="French Toast">
+                    <div class="item-details">
+                        <h3>French Toast</h3>
+                        <span class="price">210/-</span>
+                        <p class="description">Golden French toast served with berries and syrup.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- About Section -->
+    <div class="section" id="about">
+        <h2>About Us</h2>
+        <p>We are a fine dining restaurant offering a variety of delicious dishes made from fresh ingredients. Our chefs
+            are passionate about creating delightful dining experiences for our customers.</p>
+        <a href="https://www.instagram.com/accounts/login/?hl=en">Reach out to us</a>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="section" id="contact">
+        <h2>Contact Us</h2>
+        <p>For reservations or inquiries, feel free to reach out to us at:</p>
+        <table class="contact-table">
+            <tr>
+                <th>Phone</th>
+                <td>9833320576</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>shwetakare29@gmail.com</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>Kandivali East , Ashok Nagar</td>
+            </tr>
+        </table>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        // Initialize data array from localStorage or as a new array with headers
+        let storedData = JSON.parse(localStorage.getItem('bookingData')) || [["Name", "Email", "Phone", "Guests", "Date", "Time"]];
+
+        document.getElementById("bookTableForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(event.target);
+
+            // Convert form data to an object
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+
+            // Add new form data as a row in the array
+            storedData.push(Object.values(formObject));
+
+            // Store the updated data back to localStorage
+            localStorage.setItem('bookingData', JSON.stringify(storedData));
+
+            // Create a new workbook and worksheet from the stored data
+            const workbook = XLSX.utils.book_new();
+            const worksheet = XLSX.utils.aoa_to_sheet(storedData);
+
+            // Append the worksheet to the workbook
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Booking Data");
+
+            // Write the workbook to a file and trigger download
+            XLSX.writeFile(workbook, "bookingData.xlsx");
+
+            // Show the "Generate PDF" button after booking
+        document.getElementById('generatePDF').style.display = 'block'; 
+            
+            alert("Table booked!");
+        
+        });
+
+        
+        document.getElementById('generatePDF').addEventListener('click', function() {
+        const lastBooking = storedData[storedData.length - 1];
+        const [name, email, phone, guests, date, time] = lastBooking;
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Load the background image
+        const imageUrl = 'aboutus.jpeg';  // Replace with your image URL
+
+        // Add the background image (scaled to fit the page)
+        doc.addImage(imageUrl, 'JPEG', 0, 0, 210, 297);  // Full A4 page size (210mm x 297mm)
+
+        // Draw a white box for the text content
+        doc.setFillColor(255, 255, 255);  // White color
+        doc.roundedRect(20, 50, 170, 140, 5, 5, 'F');  // Rounded rectangle for form data
+
+        // Add title text
+        doc.setFontSize(20);
+        doc.setTextColor(0, 0, 0);  // Black text for the title
+        doc.setFont("Trebuchet MS", "bold");
+        doc.text("Enjoy the fine-dine dinner!", 105, 70, null, null, 'center');  // Centered title
+
+        // Set font for the form data and add details
+        doc.setFontSize(12);
+        doc.setTextColor(0, 0, 0);  // Black for labels
+        doc.text(`Name:`, 30, 90);
+        doc.setTextColor(0, 0, 0);  // Red for the values
+        doc.text(`${name}`, 80, 90);
+
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Email:`, 30, 100);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${email}`, 80, 100);
+
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Phone:`, 30, 110);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${phone}`, 80, 110);
+
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Guests:`, 30, 120);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${guests}`, 80, 120);
+
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Date:`, 30, 130);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${date}`, 80, 130);
+
+        doc.setTextColor(0, 0, 0);
+        doc.text(`Time:`, 30, 140);
+        doc.setTextColor(0, 0, 0);
+        doc.text(`${time}`, 80, 140);
+
+        // Save the PDF
+        doc.save("booking-details.pdf");
+
+        // Hide the "Generate PDF" button after generating the PDF
+        document.getElementById('generatePDF').style.display = 'none';
+    });
+    </script>
+
+</body>
+
+</html>
